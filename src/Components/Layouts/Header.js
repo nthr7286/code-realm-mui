@@ -1,6 +1,11 @@
 import React from 'react'
+import { AppBar, Toolbar, Typography } from 'material-ui'
 
 export default props =>
-<div>
-  Header
-</div>
+<AppBar position="static">
+  <Toolbar>
+    <Typography variant="headerline" color="inherit">
+      Exerceise Database
+    </Typography>
+  </Toolbar>
+</AppBar>
