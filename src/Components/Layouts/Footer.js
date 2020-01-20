@@ -2,7 +2,7 @@ import React from 'react'
 import { Paper, Tabs } from 'material-ui'
 import { Tab } from 'material-ui/Tabs'
 
-export default props =>
+export default ({ muscles }) =>
 <Paper>
   <Tabs
     value={0}
@@ -10,8 +10,9 @@ export default props =>
     textColor="primary"
     centered
   >
-    <Tab label="Item One" />
-    <Tab label="Item Two" />
-    <Tab label="Item Three" />
+    <Tab label="All" />
+    {muscles.map(group =>
+      <Tab key={group} label={group} />
+    )}
   </Tabs>
 </Paper>
