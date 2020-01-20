@@ -12,37 +12,57 @@ const styles = {
   }
 }
 
-export default ({ exercises }) =>
-<Grid container>
-  <Grid item sm>
-    <Paper style={styles.Paper}>
-      {exercises.map(([group, exercises]) => 
-        <Fragment>
-          <Typography 
-            variant="headline"
-            style={{textTransform: 'capitalize'}}
-          >
-            {group}
-          </Typography>
-          <List component="nav">
-            {exercises.map(({ title }) =>
-              <ListItem button>
-                <ListItemText primary={title} />
-              </ListItem>
-            )}
-          </List>
-        </Fragment>
-      )}
-    </Paper>
+export default ({ 
+  exercises, 
+  category, 
+  onSelect, 
+  exercise: {
+    id, 
+    title = 'Welcome!', 
+    description = 'Please select an exercise from the list on the lesf.'
+  } 
+ }) =>
+  <Grid container>
+    <Grid item sm>
+      <Paper style={styles.Paper}>
+        {exercises.map(([group, exercises]) => 
+          !category || category === group
+            ? <Fragment key={group}>
+                <Typography 
+                  variant="headline"
+                  style={{textTransform: 'capitalize'}}
+                >
+                  {group}
+                </Typography>
+                <List component="nav">
+                  {exercises.map(({ id, title }) =>
+                    <ListItem 
+                      key={id}
+                      button
+                      onClick={() => onSelect(id)}
+                    >
+                      <ListItemText primary={title} />
+                    </ListItem>
+                  )}
+                </List>
+              </Fragment>
+            : null
+        )}
+      </Paper>
+    </Grid>
+    <Grid item sm>
+      <Paper style={styles.Paper}>
+        <Typography 
+          variant="display1"
+        >
+          {title}
+        </Typography>
+        <Typography 
+          variant="subheading"
+          style={{marginTop: 20}}
+        >
+          {description}
+        </Typography>
+      </Paper>
+    </Grid>
   </Grid>
-  <Grid item sm>
-    <Paper style={styles.Paper}>
-      <Typography 
-        variant="subheading"
-        style={{marginTop: 20}}
-      >
-        Please select an exercise from the list on the lesf.
-      </Typography>
-    </Paper>
-  </Grid>
-</Grid>
