@@ -19,10 +19,16 @@ export default class extends Component {
     })
   }
 
+  handleFormSubmit = exercise => {
+    this.handleToggle()
+
+    this.props.onCreate(exercise)
+  }
+
   render() {
 
     const { open } = this.state,
-          { muscles, onCreate } = this.props
+          { muscles } = this.props
 
     return <Fragment>
       <Button 
@@ -44,7 +50,7 @@ export default class extends Component {
           </DialogContentText>
           <Form 
             muscles={muscles}
-            onSubmit={onCreate}
+            onSubmit={this.handleFormSubmit}
           />
         </DialogContent>
       </Dialog>
