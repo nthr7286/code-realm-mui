@@ -5,7 +5,7 @@ import {
   ListItemText,
   ListItemSecondaryAction
 } from 'material-ui/List'
-import { Edit, Delete } from 'material-ui-icons'
+import { Edit, Delete } from '@material-ui/icons'
 import Form from './Form'
 
 const styles = {
