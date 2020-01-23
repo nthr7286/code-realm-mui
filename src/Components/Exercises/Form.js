@@ -3,15 +3,8 @@ import { TextField, Select, Button } from 'material-ui'
 import { FormControl } from 'material-ui/Form'
 import { InputLabel } from 'material-ui/Input'
 import { MenuItem } from 'material-ui/Menu'
-import { withStyles } from 'material-ui/styles'
 
-const styles = theme => ({
-  FormControl: {
-    width: 250
-  }
-})
-
-export default withStyles(styles)(class extends Component {
+export default class extends Component {
   state = this.getInitState()
 
   getInitState() {
@@ -22,6 +15,13 @@ export default withStyles(styles)(class extends Component {
       description: '',
       muscles: ''
     }
+  }
+
+  componentWillReceiveProps({ exercise }) {
+    console.log('fired')
+    this.setState({
+      ...exercise
+    })
   }
 
   static getDerivedStateFromProps({ exercise }) {
@@ -38,7 +38,6 @@ export default withStyles(styles)(class extends Component {
       id: this.state.title.toLocaleLowerCase().replace(/ /g, '-'),
       ...this.state
     })
-    this.setState(this.getInitState())
   }
 
 
@@ -51,12 +50,10 @@ export default withStyles(styles)(class extends Component {
         value={title}
         onChange={this.handleChange('title')}
         margin="normal"
-        className={classes.FormControl}
+        fullWidth
       />
       <br />
-      <FormControl 
-        className={classes.FormControl}
-      >
+      <FormControl fullWidth>
         <InputLabel htmlFor="muscles">
           Muscles
         </InputLabel>
@@ -79,16 +76,17 @@ export default withStyles(styles)(class extends Component {
         value={description}
         onChange={this.handleChange('description')}
         margin="normal"
-        className={classes.FormControl}
+        fullWidth
       />
       <br />
       <Button 
         color="primary"
         variant="raised"
         onClick={this.handleSubmit}
+        disabled={!title || !muscles}
       >
         {exercise ? 'Edit' : 'Create'}
       </Button>
     </form>
   }
-})
+}

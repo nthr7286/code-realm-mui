@@ -40,6 +40,9 @@ export default class extends Component {
       </Button>
       <Dialog
         open={open}
+        onClose={this.handleToggle}
+        fullWidth
+        maxWidth='xs'
       >
         <DialogTitle>
           Create a New Exercise
