@@ -16,7 +16,8 @@ const theme = createMuiTheme({
       dark: amber[700]
     },
     type: 'dark'
-  }
+  },
+  spacing: 10,
 })
 
 ReactDOM.render(
