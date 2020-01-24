@@ -11,8 +11,8 @@ const styles = {
   }
 }
 
-export default withStyles(styles)(
-  ({ classes, muscles,onExerciseCreate }) =>
+export default withStyles(styles)(({ classes }) =>
+  
     <AppBar 
       position="static"
     >
@@ -24,10 +24,7 @@ export default withStyles(styles)(
         >
           Exerceise Database
         </Typography>
-        <CreateDialog 
-          muscles={muscles} 
-          onCreate={onExerciseCreate}
-        />
+        <CreateDialog />
       </Toolbar>
     </AppBar>
 )

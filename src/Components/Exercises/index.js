@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Edit from '@material-ui/icons/Edit'
 import Delete from '@material-ui/icons/Delete'
 import withStyles from '@material-ui/core/styles/withStyles'
+import { withContext } from '../../context'
 import Form from './Form'
 
 const styles = theme => ({
@@ -45,11 +46,11 @@ const styles = theme => ({
   }
 })
 
-export default withStyles(styles)(
+const Exercises = 
   ({ 
     classes,
     muscles,
-    exercises, 
+    exercisesByMuscles,
     category, 
     editMode,
     onSelect, 
@@ -66,7 +67,7 @@ export default withStyles(styles)(
     <Grid container className={classes.container}>
       <Grid item className={classes.item} xs={12} sm={6}>
         <Paper className={classes.paper}>
-          {exercises.map(([group, exercises]) => 
+          {exercisesByMuscles.map(([group, exercises]) => 
             !category || category === group
               ? <Fragment key={group}>
                   <Typography 
@@ -132,4 +133,5 @@ export default withStyles(styles)(
         </Paper>
       </Grid>
     </Grid>
-)
+
+export default withContext(withStyles(styles)(Exercises))
