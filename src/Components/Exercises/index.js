@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react'
-import { Grid, Paper, Typography, List, IconButton } from 'material-ui'
-import { 
-  ListItem, 
-  ListItemText,
-  ListItemSecondaryAction
-} from 'material-ui/List'
-import { Edit, Delete } from '@material-ui/icons'
-import { withStyles } from 'material-ui/styles'
+import Grid from '@material-ui/core/Grid' 
+import Paper from '@material-ui/core/Paper' 
+import Typography from '@material-ui/core/Typography' 
+import List from '@material-ui/core/List' 
+import ListItem from '@material-ui/core/ListItem' 
+import ListItemText from '@material-ui/core/ListItemText' 
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction' 
+import IconButton from '@material-ui/core/IconButton' 
+
+import Edit from '@material-ui/icons/Edit'
+import Delete from '@material-ui/icons/Delete'
+import withStyles from '@material-ui/core/styles/withStyles'
 import Form from './Form'
 
 const styles = {
@@ -43,7 +47,8 @@ export default withStyles(styles)(
             !category || category === group
               ? <Fragment key={group}>
                   <Typography 
-                    variant="headline"
+                    color='secondary'
+                    variant="h5"
                     style={{textTransform: 'capitalize'}}
                   >
                     {group}
@@ -58,10 +63,16 @@ export default withStyles(styles)(
                         <ListItemText primary={title} />
   
                         <ListItemSecondaryAction>
-                          <IconButton onClick={() => onSelectEdit(id)}>
+                          <IconButton 
+                            color='primary'
+                            onClick={() => onSelectEdit(id)}
+                          >
                             <Edit />
                           </IconButton>
-                          <IconButton onClick={() => onDelete(id)}>
+                          <IconButton 
+                            color='primary' 
+                            onClick={() => onDelete(id)}
+                          >
                             <Delete />
                           </IconButton>
                         </ListItemSecondaryAction>
@@ -76,7 +87,8 @@ export default withStyles(styles)(
       <Grid item xs={12} sm={6}>
         <Paper className={classes.Paper}>
           <Typography 
-            variant="display1"
+            color='secondary'
+            variant="h4"
             gutterBottom
           >
             {title}
@@ -89,7 +101,7 @@ export default withStyles(styles)(
                 onSubmit={onEdit}
               />
             : <Typography 
-                 variant="subheading"
+                 variant="subtitle1"
               >
                 {description}
               </Typography>
